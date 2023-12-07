@@ -1,0 +1,85 @@
+﻿@page "/farm"
+
+@using BlazorApp.Services;
+
+@using BlazorCrudShared;
+@using CurrieTechnologies.Razor.SweetAlert2;
+@using MatBlazor
+
+@inject IAnimalService animalService
+@inject SweetAlertService Swal;
+
+<h3>Animal</h3>
+
+
+@if(animals == null)
+{
+    <h4>No data</h4>
+}
+else
+{
+    <div class="animal-grid">
+        <MatTable Items="@animals" class="mat-elevation-z8">
+            <MatTableHeader>
+                <th>Name</th>
+                <th>Breed</th>
+                <th>Birth</th>
+                <th>Sex</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th></th>
+            </MatTableHeader>
+            <MatTableRow>
+                <td><input type="checkbox" /></td>
+                <td>@context.Name</td>
+                <td>@context.Breed</td>
+                <td>@context.BirthDate.ToShortDateString()</td>
+                <td>@context.Sex</td>
+                <td>@context.Price</td>
+                <td>@context.Status</td>
+                <td>
+                    <button @onclick="() => EditAnimal(context)">Edit</button>
+                    <button @onclick="() => DeleteAnimal(context.AnimalId)">Delete</button>
+                </td>
+                <tr>
+                    <td colspan="6"></td>
+                    <td>Total:</td>
+                    <td>@totalPrice</td>
+                </tr>
+            </MatTableRow>
+        </MatTable>
+    </div>
+
+}
+
+
+@code {
+    List<AnimalDTO>? animals = null;
+
+    private decimal totalPrice;
+    protected override async Task OnInitializedAsync()
+    {
+        animals = await animalService.GetAnimals();
+    }   
+
+    // Método para editar un animal
+    private void EditAnimal(AnimalDTO animal)
+    {
+        // Lógica de edición aquí
+    }
+
+    // Método para eliminar un animal
+    private async Task DeleteAnimal(int id)
+    {
+        var result = await Swal.FireAsync(new SweetAlertOptions
+        {
+            Title = "Delete Animal",
+            Text = "Are you sure?",
+            Icon = SweetAlertIcon.Question,
+            ShowCancelButton = true
+
+        });
+        if (result.IsConfirmed)
+            animals = animals!.FindAll(a => a.AnimalId == id);
+    }
+}
