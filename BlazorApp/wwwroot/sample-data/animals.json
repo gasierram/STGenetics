@@ -1,0 +1,154 @@
+[
+  {
+    "name": "Bessie",
+    "breed": "Holstein",
+    "birthDate": "2019-05-01",
+    "sex": "Female",
+    "price": "1500",
+    "status": "Active"
+  },
+  {
+    "name": "Moo Moo",
+    "breed": "Hereford",
+    "birthDate": "2018-09-12",
+    "sex": "Female",
+    "price": "2000",
+    "status": "Active"
+  },
+  {
+    "name": "Spot",
+    "breed": "Angus",
+    "birthDate": "2017-12-25",
+    "sex": "Male",
+    "price": "1800",
+    "status": "Active"
+  },
+  {
+    "name": "Daisy",
+    "breed": "Jersey",
+    "birthDate": "2020-02-14",
+    "sex": "Female",
+    "price": "1600",
+    "status": "Active"
+  },
+  {
+    "name": "Charlie",
+    "breed": "Limousin",
+    "birthDate": "2019-07-10",
+    "sex": "Male",
+    "price": "1900",
+    "status": "Active"
+  },
+  {
+    "name": "Lola",
+    "breed": "Charolais",
+    "birthDate": "2018-03-30",
+    "sex": "Female",
+    "price": "1700",
+    "status": "Active"
+  },
+  {
+    "name": "Max",
+    "breed": "Simmental",
+    "birthDate": "2017-06-05",
+    "sex": "Male",
+    "price": "2000",
+    "status": "Active"
+  },
+  {
+    "name": "Rosie",
+    "breed": "Gelbvieh",
+    "birthDate": "2019-09-20",
+    "sex": "Female",
+    "price": "1800",
+    "status": "Active"
+  },
+  {
+    "name": "Oscar",
+    "breed": "Hereford",
+    "birthDate": "2018-12-01",
+    "sex": "Male",
+    "price": "1900",
+    "status": "Active"
+  },
+  {
+    "name": "Molly",
+    "breed": "Angus",
+    "birthDate": "2020-04-05",
+    "sex": "Female",
+    "price": "1600",
+    "status": "Active"
+  },
+  {
+    "name": "Sam",
+    "breed": "Jersey",
+    "birthDate": "2019-08-15",
+    "sex": "Male",
+    "price": "1700",
+    "status": "Active"
+  },
+  {
+    "name": "Lucy",
+    "breed": "Limousin",
+    "birthDate": "2018-01-25",
+    "sex": "Female",
+    "price": "1900",
+    "status": "Active"
+  },
+  {
+    "name": "Rocky",
+    "breed": "Charolais",
+    "birthDate": "2017-04-10",
+    "sex": "Male",
+    "price": "1800",
+    "status": "Active"
+  },
+  {
+    "name": "Luna",
+    "breed": "Simmental",
+    "birthDate": "2019-10-30",
+    "sex": "Female",
+    "price": "1700",
+    "status": "Active"
+  },
+  {
+    "name": "Baxter",
+    "breed": "Gelbvieh",
+    "birthDate": "2018-02-20",
+    "sex": "Male",
+    "price": "2000",
+    "status": "Active"
+  },
+  {
+    "name": "Penny",
+    "breed": "Hereford",
+    "birthDate": "2020-06-15",
+    "sex": "Female",
+    "price": "1600",
+    "status": "Active"
+  },
+  {
+    "name": "Leo",
+    "breed": "Angus",
+    "birthDate": "2019-09-05",
+    "sex": "Male",
+    "price": "1900",
+    "status": "Active"
+  },
+  {
+    "name": "Stella",
+    "breed": "Jersey",
+    "birthDate": "2018-02-15",
+    "sex": "Female",
+    "price": "1800",
+    "status": "Active"
+  },
+  {
+    "name": "Duke",
+    "breed": "Limousin",
+    "birthDate": "2017-05-10",
+    "sex": "Male",
+    "price": "1700",
+    "status": "Active"
+  }
+]

@@ -8,18 +8,40 @@
 
 @inject IAnimalService animalService
 @inject SweetAlertService Swal;
+@inject NavigationManager navigation;
 
-<h3>Animal</h3>
+<h3>Animal Page</h3>
+
+<a class="btn btn-warning" href="create"> Create New Animal</a>
+<br />
+
+<EditForm Model="animal">
 
 
+    <MatTextField Label="Name"@bind-Value="@filterName"></MatTextField>
+    
+    <MatSelect Label="Select" @bind-Value="animal.Breed">
+        <MatOptionString Value=""></MatOptionString>
+        <MatOptionString Value="Holstein">Holstein</MatOptionString>
+        <MatOptionString Value="Angus">Angus</MatOptionString>
+        <MatOptionString Value="Jersey">Jersey</MatOptionString>
+        <MatOptionString Value="Charolais">Charolais</MatOptionString>
+    </MatSelect>
+    
+    <MatTextField Label="Price" @bind-Value="@filterPrice"></MatTextField>
+
+    <MatButton Type="submit" @onclick="Filter">Filter</MatButton>
+</EditForm>
 @if(animals == null)
 {
     <h4>No data</h4>
 }
 else
 {
+
+
     <div class="animal-grid">
-        <MatTable Items="@animals" class="mat-elevation-z8">
+        <MatTable Items="@filteredAnimals" class="mat-elevation-z8" Page="currentPage" PageSize="10" Footer="true">
             <MatTableHeader>
                 <th>Name</th>
                 <th>Breed</th>
@@ -53,9 +75,9 @@ else
 }
 
 
-@code {
-    List<AnimalDTO>? animals = null;
-
+    @code {
+        List<AnimalDTO>? animals = null;
+        AnimalDTO animal = new AnimalDTO();
     private decimal totalPrice;
     protected override async Task OnInitializedAsync()
     {
@@ -65,7 +87,7 @@ else
     // Método para editar un animal
     private void EditAnimal(AnimalDTO animal)
     {
-        // Lógica de edición aquí
+        navigation.NavigateTo($"/create/{animal.AnimalId}");
     }
 
     // Método para eliminar un animal
@@ -81,5 +103,23 @@ else
         });
         if (result.IsConfirmed)
             animals = animals!.FindAll(a => a.AnimalId == id);
+    }
+
+
+    private List<AnimalDTO> filteredAnimals;
+    private int currentPage = 1;
+
+    private string filterName;
+    private string filterBreed;
+    private decimal? filterPrice;
+
+    private void Filter()
+    {
+        filteredAnimals = animals
+            .Where(a =>
+                (string.IsNullOrEmpty(filterName) || a.Name.Contains(filterName, StringComparison.OrdinalIgnoreCase)) &&
+                (string.IsNullOrEmpty(filterBreed) || a.Breed.Contains(filterBreed, StringComparison.OrdinalIgnoreCase)) &&
+                (!filterPrice.HasValue || a.Price == filterPrice.Value))
+            .ToList();
     }
 }

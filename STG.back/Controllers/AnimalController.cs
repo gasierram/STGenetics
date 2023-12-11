@@ -107,7 +107,7 @@ namespace STG.back.Controllers
             {
                 var dbAnimal = new Animal
                 {
-                    AnimalId = animal.AnimalId,
+                    //AnimalId = animal.AnimalId,
                     Name = animal.Name,
                     Breed = animal.Breed,
                     BirthDate = animal.BirthDate,

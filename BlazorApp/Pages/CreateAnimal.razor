@@ -1,0 +1,110 @@
+﻿@page "/create"
+@page "/create/{idAnimal:int}"
+@using BlazorApp.Services;
+
+@using BlazorCrudShared;
+@using CurrieTechnologies.Razor.SweetAlert2;
+@using MatBlazor
+
+@inject IAnimalService animalService
+@inject NavigationManager navigation;
+
+<h3>Create Or Update Animal</h3>
+
+
+<EditForm Model="animal" OnValidSubmit="OnValidSubmit">
+    
+
+    <div class="mat-layout-grid">
+        <div class="mat-layout-grid-inner">
+ 
+            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-4">
+                <p>
+                    <MatTextField Label="Name" @bind-Value="animal.Name"/>
+                </p>
+                <p>
+                    <MatTextField Label="Breed" @bind-Value="animal.Breed" />
+                </p>
+                <p>
+                    <MatTextField Label="Price" @bind-Value="animal.Price"/>
+                </p>
+
+                <p>
+                    <MatDatePicker Label="Birth" @bind-Value="animal.BirthDate"/>
+                </p>
+                
+                <p>
+                    <MatSelect Label="Sex" @bind-Value="animal.Sex">
+                        <MatOptionString Value=""></MatOptionString>
+                        <MatOptionString Value="Male">M</MatOptionString>
+                        <MatOptionString Value="Female">F</MatOptionString>
+                    </MatSelect>
+                </p>
+
+                <p>
+                    <MatSelect Label="Status" @bind-Value="animal.Status">
+                        <MatOptionString Value=""></MatOptionString>
+                        <MatOptionString Value="True">Active</MatOptionString>
+                        <MatOptionString Value="False">Inactive</MatOptionString>
+                    </MatSelect>
+                </p>
+               
+                <MatDivider/>
+                
+                <ValidationSummary/>
+            </div>
+ 
+                        
+            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-4">
+                <MatButton Type="submit" Raised="true">Save</MatButton>
+            </div>
+            <div class="mat-layout-grid-cell mat-layout-grid-cell-span-4">
+            </div>
+        </div>
+    </div>
+    
+</EditForm>
+
+
+
+@code {
+
+    [Parameter]
+    public int idAnimal { get;set; }
+
+
+    AnimalDTO animal = new AnimalDTO();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if(idAnimal != 0)
+        {
+            animal = await animalService.GetAnimal(idAnimal);
+
+        }
+
+
+
+
+    }
+
+    private async Task OnValidSubmit()
+    {
+        int idReturn = 0;
+
+        if(idAnimal == 0)
+        {
+            idReturn = await animalService.Create(animal);
+        }
+        else
+        {
+            idReturn = await animalService.Edit(animal);
+        }
+
+        if (idReturn != 0)
+            navigation.NavigateTo("/farm");
+
+    }
+
+
+}
